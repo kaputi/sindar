@@ -1,11 +1,17 @@
 package token
 
+import "fmt"
+
 type TokenType string
 
 type Token struct {
 	Type     TokenType
 	Literal  string
 	Location [2]int
+}
+
+func (t *Token) LocationString() string {
+	return fmt.Sprintf("[%d, %d]", t.Location[0], t.Location[1])
 }
 
 const (
