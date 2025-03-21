@@ -19,6 +19,7 @@ func main() {
 
 	fmt.Printf("Feel free to type in commands\n")
 
+	repl.StartParser(os.Stdin, os.Stdout)
+	// repl.StartLexer(os.Stdin, os.Stdout)
 	// repl.Start(os.Stdin, os.Stdout)
-	repl.StartLexer(os.Stdin, os.Stdout)
 }
