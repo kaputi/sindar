@@ -34,7 +34,7 @@ const (
 	GT = ">"
 
 	// delimiters
-	COMA      = ","
+	COMMA     = ","
 	SEMICOLON = ";"
 
 	LPAREN = "("

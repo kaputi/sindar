@@ -60,7 +60,7 @@ func (l *Lexer) NextToken() token.Token {
 	case ';':
 		tok.Type = token.SEMICOLON
 	case ',':
-		tok.Type = token.COMA
+		tok.Type = token.COMMA
 	case '{':
 		tok.Type = token.LBRACE
 	case '}':
