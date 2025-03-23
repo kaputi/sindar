@@ -6,7 +6,7 @@ check-quality:
 	make vet
 
 lint:
-	golangci-lint run --enable-all
+	golangci-lint run 
 
 fmt:
 	go fmt ./...

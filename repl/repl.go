@@ -15,7 +15,7 @@ const PROMPT = ">> "
 // func Start(in io.Reader, out io.Writer) {
 // }
 
-func StartLexer(in io.Reader, out io.Writer) {
+func StartLexer(in io.Reader, _ io.Writer) {
 	scanner := bufio.NewScanner(in)
 
 	for {
