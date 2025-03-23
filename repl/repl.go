@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 
+	"github.com/kaputi/sindar/evaluator"
 	"github.com/kaputi/sindar/lexer"
 	"github.com/kaputi/sindar/parser"
 	"github.com/kaputi/sindar/token"
@@ -12,8 +13,37 @@ import (
 
 const PROMPT = ">> "
 
-// func Start(in io.Reader, out io.Writer) {
-// }
+func Start(in io.Reader, out io.Writer) {
+	scanner := bufio.NewScanner(in)
+
+	for {
+		fmt.Print(PROMPT)
+		scanned := scanner.Scan()
+		if !scanned {
+			return
+		}
+		line := scanner.Text()
+		if line == "exit" {
+			return
+		}
+
+		l := lexer.New(line)
+		p := parser.New(l)
+
+		program := p.ParseProgram()
+		if len(p.Errors()) != 0 {
+			printParserErrors(out, p.Errors())
+			continue
+		}
+
+		evaluated := evaluator.Eval(program)
+
+		if evaluated != nil {
+			io.WriteString(out, evaluated.Inspect())
+			io.WriteString(out, "\n")
+		}
+	}
+}
 
 func StartLexer(in io.Reader, _ io.Writer) {
 	scanner := bufio.NewScanner(in)
